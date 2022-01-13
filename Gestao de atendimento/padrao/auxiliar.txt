@@ -1,0 +1,58 @@
+//botao de enviar dados de sugestao
+       $("#Enviarsugestao").click(function (event){
+              event.preventDefault();
+           // _____declarando variaveis------------
+              var titulo, descricao, usuario, setor, data;
+              titulo = $(".relata_sugestao input[name='titulo']").val();
+              descricao = $(".relata_sugestao textarea[name='descricao']").val();
+              usuario = $(".relata_sugestao select[name='usuario']").val();
+              setor = $(".relata_sugestao select[name='setor']").val();
+              data = $(".relata_sugestao input[name='data']").val();
+               //codigo ajax 
+                 $.ajax({
+                  type:'POST',
+                  url:'../conf/sugestao_bug.php',
+                  data:{
+                    titulo : titulo,
+                    descricao : descricao,
+                    usuario : usuario,
+                    setor : setor,
+                    data : data,
+                    tipo : '1'
+                  }}).done(function(relata){
+                     alert(relata); 
+                     location.reload();
+                  })
+              
+              })
+       // 
+        //===========Botao de enviar dados de susgestao===========//
+
+       $("#btn_relatar_bug").click(function(event){
+        event.preventDefault();
+       
+       //-----------declarando variaveis--------------//
+         var titulo, descricao, usuario, setor, data;
+              titulo = $(".relata_bug input[name='titulo']").val();
+              descricao = $(".relata_bug textarea[name='descricao']").val();
+              usuario = $(".relata_bug select[name='usuario']").val();
+              setor = $(".relata_bug select[name='setor']").val();
+              data = $(".relata_bug input[name='data']").val();
+       //codigo ajax
+       $.ajax({
+          
+          type:'POST',
+                  url:'../conf/sugestao_bug.php',
+                  data:{
+                    titulo : titulo,
+                    descricao : descricao,
+                    usuario : usuario,
+                    setor : setor,
+                    data : data,
+            tipo: '2'
+          }}).done(function(returnbug){
+            alert(returnbug);
+            location.reload();
+          })
+       
+      })

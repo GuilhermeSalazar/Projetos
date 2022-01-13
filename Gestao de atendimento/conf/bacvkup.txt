@@ -1,0 +1,30 @@
+<div class='br-chatpanel-body'>
+        <div class='br-chat-header'>
+          <div class='br-img-user online'><img src='https://via.placeholder.com/500' alt=''></div>
+          <div class='chat-name'>
+            <h6 id='para'>POST GERAL</h6>
+             <input style='display: none' type='text' name='para' value='GERAL'>
+            
+          </div>
+          <nav class='nav'>
+          
+            <a href='' class='nav-link'><i class='icon ion-ios-trash-outline'></i></a>
+            <a href='' class='nav-link chat_x'><i class='icon ion-ios-trash-outline'></i></a>
+          </nav>
+        </div><!-- br-msg-header -->
+        <div class='br-chat-body'>
+          <div class='content-inner'>
+            <div class='returno'></div><!-- media -->
+          </div><!-- content-inner -->
+        </div><!-- br-chat-body -->
+        <div class='br-chat-footer'>
+          <div>
+            <input type='text' name='msg' class='form-control' placeholder='Write your message here...'>
+            <input style='display: none' type='text' name='id' class='form-control' value='PRONTO SOLUCOES'>                     
+          </div>
+          <nav class='nav'>
+             
+            <a href='' class='nav-link enviar'>Enviar</a>
+          </nav>
+        </div><!-- br-chat-footer -->
+      </div>

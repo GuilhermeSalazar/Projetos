@@ -1,0 +1,23 @@
+$buscar_lista = mysqli_query($sql,"SELECT * FROM acesso where fk_tecnico = '0'");
+
+                 while($acesso_list = mysqli_fetch_array($buscar_lista)){
+                      
+                      if($acesso_list['nivel'] == '0'){
+                        switch ($cargoid){
+
+                         case 1:
+
+                       // $aco = "<a data-toggle='modal' data-target='#chamado_atendente' class='br-menu-link active ' href='".$acesso_list['id']."'>Editar</a>";
+                         break;
+                         case 3:
+                       // $aco = "<a class='br-menu-link active ' href='".$acesso_list['id']."'>Atender</a>"; 
+                          break;
+
+
+                        }
+                        
+                       //$status = "Aguardando..";
+                                            
+                      }
+
+                        

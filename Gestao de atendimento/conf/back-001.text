@@ -1,0 +1,186 @@
+<?php 
+
+require 'db.php';
+
+  $buscar = mysqli_query($sql,"SELECT * FROM hepdesk where status > 0")or die(mysqli_error());
+
+  $cont = mysqli_num_rows($buscar);
+
+   if($cont > 0){
+
+   $id_buscar  = mysqli_fetch_array($buscar)or die(mysqli_error());
+
+   $conta = $id_buscar['conta_fk'];
+     
+
+    $usuario = mysqli_query($sql,"SELECT * FROM usuario where id = '$conta'")or die(mysqli_error());
+
+
+    if($array = mysqli_fetch_array($usuario)){
+            $star = $id_buscar['status'];
+      
+           $acesso = mysqli_query($sql,"SELECT * FROM acesso where fk_tecnico = '$conta' && nivel='1'")or die(mysqli_error());
+
+          $acesso_conta = mysqli_num_rows($acesso);
+           if($acesso_conta == 0){
+           	$acesso_conta = "";
+          }
+
+           if($acesso_conta > 1){
+           	$acesso_conta = $acesso_conta." Acessos";
+           }           
+          
+          if($acesso_conta == 0){
+
+            $numero_acesso = "";	
+            $acess = "";
+          }
+
+          if($acesso_conta == 1){
+
+            $acesso_conta = $acesso_conta." Acesso";	
+             
+             
+          } 
+ while($star > 0){        
+  if($star == 1) {
+  		 echo "
+      		<div class='col-sm-3 col-4 mg-t-10'>
+            <div class='card overflow-hidden'>
+              <div class='pd-x-20 pd-t-20 d-flex align-items-center'>
+                <img src='update/".$array['perfil']."' alt='' class='wd-100 mg-b-5 rounded-circle ht-100'>
+                <div class='mg-l-20'>
+                  <p class='tx-14 tx-spacing-2 tx-mont tx-semibold tx-uppercase mg-b-10'>".$array['usuario']." <span class='tx-12 tx-roboto tx-success'>Livre</span></p>
+                  <p class='tx-32 tx-danger tx-lato mg-b-0 lh-1'></p>
+                  <span class='tx-12 tx-roboto tx-danger'>
+
+                  </span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+      		";
+ }
+
+  if($star == 2){	
+  		 echo "
+      		<div class='col-sm-4 col-4 mg-t-10'>
+            <div class='card overflow-hidden'>
+              <div class='pd-x-20 pd-t-20 d-flex align-items-center'>
+                <img src='update/".$array['perfil']."' alt='' class='wd-100 mg-b-5 rounded-circle ht-100'>
+                <div class='mg-l-20'>
+                  <p class='tx-10 tx-spacing-2 tx-mont tx-semibold tx-uppercase mg-b-10'>".$array['usuario']." <span class='tx-12 tx-roboto tx-primary'>Medio</span></p>
+                  <p class='tx-32 tx-primary tx-lato mg-b-0 lh-1'>".$acesso_conta."</p>
+                  <span class='tx-12 tx-roboto tx-primary'>
+                   "; 
+                      while($lin = mysqli_fetch_array($acesso)){
+
+                      	echo "<a Class='tx-primary' href='".$lin['id']."'>".$lin['nome_contato']."</a> <br>";
+                      }
+
+
+                   echo "  
+                  </span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+      		";
+
+  	
+  		}
+  	if($star == 3){
+
+         	 echo "
+      		<div class='col-sm-4 col-4 mg-t-10'>
+            <div class='card overflow-hidden'>
+              <div class='pd-x-20 pd-t-20 d-flex align-items-center'>
+                <img src='update/".$array['perfil']."' alt='' class='wd-100 mg-b-5 rounded-circle ht-100'>
+                <div class='mg-l-20'>
+                  <p class='tx-14 tx-spacing-2 tx-mont tx-semibold tx-uppercase mg-b-10'>".$array['usuario']." <span class='tx-12 tx-roboto tx-danger'>Critico</span></p>
+                  <p class='tx-32 tx-danger tx-lato mg-b-0 lh-1'>".$acesso_conta."</p>
+                  <span class='tx-12 tx-roboto tx-danger'>
+                      "; 
+                      while($lin = mysqli_fetch_array($acesso)){
+
+                      	echo "<a Class='tx-danger' href='".$lin['id']."'>".$lin['nome_contato']."</a> <br>";
+                      }
+
+
+                   echo " 
+                  </span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+      		";
+
+  		}
+  		if($star == 4){
+        echo "
+      		<div class='col-sm-4 col-4 mg-t-10'>
+            <div class='card overflow-hidden'>
+              <div class='pd-x-20 pd-t-20 d-flex align-items-center'>
+                <img src='update/".$array['perfil']."' alt='' class='wd-100 mg-b-5 rounded-circle ht-100'>
+                <div class='mg-l-20'>
+                  <p class='tx-14 tx-spacing-2 tx-mont tx-semibold tx-uppercase mg-b-10'>".$array['usuario']." <span class='tx-12 tx-roboto  tx-info'>Almoço</span></p>
+                  <p class='tx-32  tx-info tx-lato mg-b-0 lh-1'>".$acesso_conta."</p>
+                  <span class='tx-12 tx-roboto  tx-info'>
+                   "; 
+                      while($lin = mysqli_fetch_array($acesso)){
+
+                      	echo "<a Class='tx-info' href='".$lin['id']."'>".$lin['nome_contato']."</a> <br>";
+                      }
+
+
+                   echo " 
+                  </span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+      		";
+
+
+  		}
+     if($star == 5){
+  	       	 echo "
+      		<div class='col-sm-4 col-4 mg-t-10'>
+            <div class='card overflow-hidden'>
+              <div class='pd-x-20 pd-t-20 d-flex align-items-center'>
+                <img src='update/".$array['perfil']."' alt='' class='wd-100 mg-b-5 rounded-circle ht-100'>
+                <div class='mg-l-20'>
+                  <p class='tx-14 tx-spacing-2 tx-mont tx-semibold tx-uppercase mg-b-10'>".$array['usuario']." <span class='tx-12 tx-roboto  tx-warning'>Café</span></p>
+                  <p class='tx-32  tx-warning tx-lato mg-b-0 lh-1'>".$acesso_conta."</p>
+                  <span class='tx-12 tx-roboto  tx-warning'>
+                     "; 
+                      while($lin = mysqli_fetch_array($acesso)){
+
+                      	echo "<a Class='tx-warning' href='".$lin['id']."'>".$lin['nome_contato']."</a> <br>";
+                      }
+
+
+                   echo "
+                  </span>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+      		";
+  	   	
+    }
+
+    }  
+   }
+
+
+
+
+
+}
+ ?>
